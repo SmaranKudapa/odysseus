@@ -11,6 +11,13 @@ import { toggle as restoreMinimizedModal } from './modalManager.js';
 import { showModal, hideModal } from './modalVisibility.js';
 
 export const THEMES = {
+  // personal: pure black + white monochrome theme (default on this branch)
+  black:      { bg:'#000000', fg:'#ffffff', panel:'#0a0a0a', border:'#2a2a2a', red:'#a3a3a3',
+                advanced: { userBubbleBg: '#141414', aiBubbleBg: '#000000', bubbleBorder: '#262626',
+                            sidebarBg: '#000000', brandColor: '#ffffff', brandMixTo: '#a3a3a3',
+                            hamburgerColor: '#ffffff', inputBg: '#0a0a0a', inputBorder: '#333333',
+                            sendBtnBg: '#1f1f1f', sendBtnHover: '#333333', codeBg: '#0d0d0d',
+                            toggleActive: '#ffffff' } },
   dark:       { bg:'#282c34', fg:'#9cdef2', panel:'#111111', border:'#355a66', red:'#e06c75' },
   light:      { bg:'#f3f5f7', fg:'#26313a', panel:'#ffffff', border:'#cbd3da', red:'#b34d5c' },
   midnight:   { bg:'#0d1117', fg:'#c9d1d9', panel:'#161b22', border:'#30363d', red:'#f85149' },
@@ -36,19 +43,20 @@ export const THEMES = {
   yoyo:       { bg:'#211f23', fg:'#dfdbd7', panel:'#141415', border:'#3e5146', red:'#e09d6c' },
 };
 
-const DEFAULT_THEME = 'dark';
+const DEFAULT_THEME = 'black';
 const THEME_DISPLAY_NAMES = { ocean: 'starfield' };
 const LS_KEY = 'odysseus-theme';
 const CUSTOM_THEMES_KEY = 'odysseus-custom-themes';
 
 const FONT_MAP = {
   gohu: "'GohuFont', monospace",
+  metropolis: "'Metropolis', system-ui, -apple-system, 'Segoe UI', sans-serif",
   mono: "'Fira Code', monospace",
   sans: "system-ui, -apple-system, 'Segoe UI', sans-serif",
   serif: "Georgia, 'Times New Roman', serif",
   opendyslexic: "'OpenDyslexic', sans-serif",
 };
-const DEFAULT_FONT = 'mono';
+const DEFAULT_FONT = 'metropolis';
 
 // Compatibility for persisted themes that selected the omitted custom face.
 function normalizeFont(font) {
@@ -59,6 +67,7 @@ const MAX_CUSTOM_THEMES = 8;
 
 // Default background patterns for built-in themes
 const THEME_DEFAULT_PATTERN = {
+  black:      'none',
   dark:       'none',
   light:      'dots',
   midnight:   'rain',

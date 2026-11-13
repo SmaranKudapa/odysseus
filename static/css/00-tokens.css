@@ -33,11 +33,11 @@
 
 :root {
   /* Core palette */
-  --bg: #282c34;
-  --fg: #9cdef2;
-  --panel: #111;
-  --border: #355a66;
-  --red: #e06c75;
+  --bg: #000000;
+  --fg: #ffffff;
+  --panel: #0a0a0a;
+  --border: #2a2a2a;
+  --red: #a3a3a3;
   /* Were `var(--green)` / `var(--warn)` — self-referential, so they
      resolved to invalid and every site fell back to its own literal
      (or, for sites with no fallback, painted as transparent/inherit).
@@ -140,7 +140,7 @@ body {
      below so left + right docks can coexist without skewing the whole body. */
   transition: padding-left 160ms cubic-bezier(0.22, 0.61, 0.36, 1),
               padding-right 160ms cubic-bezier(0.22, 0.61, 0.36, 1);
-  font-family: var(--font-family, 'Fira Code', monospace);
+  font-family: var(--font-family, 'Metropolis', system-ui, sans-serif);
   display: flex;
   height: 100%;
   height: var(--app-height);
@@ -226,3 +226,13 @@ html {
 :root.density-spacious .msg { padding: 14px 18px; margin-bottom: 12px; }
 :root.density-spacious .list-item { padding: 8px 12px; }
 :root.density-spacious .sidebar .section { padding: 0; }
+
+/* ── personal: Metropolis UI font (public domain / Unlicense, see static/fonts/Metropolis-LICENSE.txt) ── */
+@font-face { font-family: 'Metropolis'; font-weight: 300; font-style: normal; font-display: swap; src: url('/static/fonts/Metropolis-300.woff2') format('woff2'); }
+@font-face { font-family: 'Metropolis'; font-weight: 400; font-style: normal; font-display: swap; src: url('/static/fonts/Metropolis-400.woff2') format('woff2'); }
+@font-face { font-family: 'Metropolis'; font-weight: 400; font-style: italic; font-display: swap; src: url('/static/fonts/Metropolis-400-italic.woff2') format('woff2'); }
+@font-face { font-family: 'Metropolis'; font-weight: 500; font-style: normal; font-display: swap; src: url('/static/fonts/Metropolis-500.woff2') format('woff2'); }
+@font-face { font-family: 'Metropolis'; font-weight: 600; font-style: normal; font-display: swap; src: url('/static/fonts/Metropolis-600.woff2') format('woff2'); }
+@font-face { font-family: 'Metropolis'; font-weight: 700; font-style: normal; font-display: swap; src: url('/static/fonts/Metropolis-700.woff2') format('woff2'); }
+/* Keep code readable in a monospace face even though the UI font is Metropolis */
+pre, code, kbd, samp, .hljs { font-family: 'Fira Code', ui-monospace, monospace; }
