@@ -242,9 +242,8 @@ export function _wireEmailInlineImages(reader) {
     getComputedStyle(ph).display !== 'none'
   ));
   const autoLoadInlineImages = state._libViewInlineImages !== false;
-  const manualPlaceholders = autoLoadInlineImages
-    ? visiblePlaceholders.filter(ph => !ph.dataset.emailImgCid)
-    : visiblePlaceholders;
+  // personal: when inline images are on, remote images auto-load too (no "Load all" bar)
+  const manualPlaceholders = autoLoadInlineImages ? [] : visiblePlaceholders;
   const existingBulkBar = reader.querySelector('.email-inline-image-load-all');
   if (!manualPlaceholders.length) existingBulkBar?.remove();
   const loadPlaceholder = (ph) => {
@@ -422,7 +421,8 @@ export function _wireEmailInlineImages(reader) {
       });
     }
     const cid = (ph.dataset.emailImgCid || '').trim();
-    if (autoLoadInlineImages && cid && ph.isConnected && ph.dataset.emailImgAutoRequested !== '1') {
+    const remoteSrc = /^https?:\/\//i.test((ph.dataset.emailImgSrc || '').trim());
+    if (autoLoadInlineImages && (cid || remoteSrc) && ph.isConnected && ph.dataset.emailImgAutoRequested !== '1') {
       ph.dataset.emailImgAutoRequested = '1';
       loadPlaceholder(ph);
     }
